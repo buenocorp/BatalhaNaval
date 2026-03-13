@@ -28,15 +28,18 @@ public class GameServlet extends HttpServlet {
         int x = Integer.parseInt(req.getParameter("x"));
         int y = Integer.parseInt(req.getParameter("y"));
 
-        boolean acerto = game.atirar(x, y);
+        boolean acerto = game.atirar(x,y);
 
-        if (acerto) {
+        if(acerto){
 
-            req.setAttribute("msg", "💥 Acertou um navio!");
+            if(game.venceu()){
+                req.setAttribute("msg","🏆 Você destruiu todos os navios!");
+                req.getRequestDispatcher("vitoria.jsp").forward(req,resp);
+                return;
+            }
 
-            RequestDispatcher rd = req.getRequestDispatcher("tabuleiro.jsp");
-            rd.forward(req, resp);
-
+            req.setAttribute("msg","💥 Acertou um navio!");
+            req.getRequestDispatcher("tabuleiro.jsp").forward(req,resp);
         } else {
 
             // gera pergunta

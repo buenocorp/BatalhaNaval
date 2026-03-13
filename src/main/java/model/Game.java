@@ -109,4 +109,19 @@ public class Game {
     public int getSize(){
         return SIZE;
     }
+    
+    public boolean venceu(){
+
+        for(int i=0;i<SIZE;i++){
+            for(int j=0;j<SIZE;j++){
+
+                if(board[i][j] == 1 && !shots[i][j]){
+                    return false; // ainda existe navio não atingido
+                }
+
+            }
+        }
+
+        return true; // todos os navios destruídos
+    }
 }
