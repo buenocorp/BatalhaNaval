@@ -3,6 +3,12 @@
 
 <%
 Pergunta p = (Pergunta) session.getAttribute("pergunta");
+
+if(p == null){
+    response.sendRedirect("tabuleiro.jsp");
+    return;
+}
+
 String[] opcoes = p.getOpcoes();
 %>
 

@@ -17,6 +17,11 @@ public class PerguntaServlet extends HttpServlet {
         HttpSession session = req.getSession();
 
         Pergunta p = (Pergunta) session.getAttribute("pergunta");
+        
+        if(p == null){
+            resp.sendRedirect("tabuleiro.jsp");
+            return;
+        }
 
         int resposta = Integer.parseInt(req.getParameter("resposta"));
 
